@@ -27,5 +27,8 @@ No Windows/PowerShell use `.\mvnw.cmd` no lugar de `./mvnw`.
 
 - Segredos so em `backend/.env` (modelo em `backend/.env.example`). Nunca commite `.env`.
 - Endpoints da API ficam sob `/api/...` (o Vite faz proxy disso em desenvolvimento).
-- Doacoes/pagamentos: fora do escopo ate a dupla pedir.
+- Login com Google: **apenas a equipe** (area administrativa para editar conteudo do site).
+  Visitantes nao fazem login. E experimental: pode ser descartado ou adiado se nao agradar.
+- Doacoes/pagamentos: adiadas. A pagina de Doacoes do design nao sera implementada agora.
+  Quando entrar, usar checkout do gateway; nunca coletar numero de cartao/CVV no nosso site.
 - Fluxo de trabalho, agents e skills disponiveis: `.claude/rules/caipora/workflow.md`.
