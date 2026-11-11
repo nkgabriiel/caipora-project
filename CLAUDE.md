@@ -25,6 +25,9 @@ No Windows/PowerShell use `.\mvnw.cmd` no lugar de `./mvnw`.
 
 ## Regras do projeto
 
+- Git: trabalhar direto na `main`, sem criar branches nem PRs. Commits pequenos no padrao
+  Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`...) e `git push` logo apos commitar.
+  Repositorio: https://github.com/nkgabriiel/caipora-project
 - Segredos so em `backend/.env` (modelo em `backend/.env.example`). Nunca commite `.env`.
 - Endpoints da API ficam sob `/api/...` (o Vite faz proxy disso em desenvolvimento).
 - Login com Google: **apenas a equipe** (area administrativa para editar conteudo do site).
