@@ -1,0 +1,260 @@
+.pilha {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ===== Topo ===== */
+.topo {
+  padding: 80px var(--margem-lateral) 64px;
+}
+
+.topoConteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.fotoEquipe {
+  position: relative;
+}
+
+.fotoEquipe img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  object-position: center 40%;
+  border-radius: var(--raio-lg);
+}
+
+.decorCirculo {
+  position: absolute;
+  top: -32px;
+  right: -32px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--cor-lima);
+}
+
+@media (max-width: 640px) {
+  .fotoEquipe img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ===== Coordenacao ===== */
+.coordenacaoSecao {
+  padding: 32px var(--margem-lateral) 96px;
+}
+
+.coordenacaoGrade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr));
+  gap: 32px;
+  align-items: stretch;
+}
+
+.cardCoordenacao {
+  --cor-foco: var(--cor-lima);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+  padding: 40px;
+  border-radius: var(--raio-lg);
+  background: var(--cor-floresta);
+  color: #ffffff;
+}
+
+.iniciais {
+  flex: none;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--cor-musgo);
+  color: var(--cor-lima);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.coordenacaoTexto {
+  flex: 1 1 220px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.coordenacaoRotulo {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-lima);
+}
+
+.coordenacaoNome {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+.coordenacaoEmail {
+  color: var(--cor-texto-sobre-escuro);
+  font-size: 17px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.coordenacaoEmail:hover {
+  color: var(--cor-lima);
+}
+
+.principio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px;
+  border-radius: var(--raio-lg);
+  background: var(--cor-fundo-claro);
+}
+
+.principioCitacao p {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 24px;
+  line-height: 1.45;
+  color: var(--cor-floresta);
+}
+
+.principioLegenda {
+  font-size: 16px;
+  color: var(--cor-texto-mudo);
+}
+
+@media (max-width: 480px) {
+  .cardCoordenacao,
+  .principio {
+    padding: 28px;
+  }
+
+  .iniciais {
+    width: 88px;
+    height: 88px;
+    font-size: 30px;
+  }
+}
+
+/* ===== Participantes ===== */
+.gradeParticipantes,
+.gradeParceiros {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+}
+
+.gradeParticipantes {
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+}
+
+.participante {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--raio-md);
+  background: var(--cor-fundo);
+}
+
+.avatar {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--cor-fundo-icone);
+  color: var(--cor-musgo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.participanteTexto {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.participanteNome {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cor-floresta);
+}
+
+.participanteCurso {
+  font-size: 15px;
+  color: var(--cor-texto-mudo);
+}
+
+/* ===== Parceiros ===== */
+.gradeParceiros {
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+}
+
+.cardParceiro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px;
+  border-radius: var(--raio-md);
+  border: 1px solid var(--cor-borda);
+}
+
+.categoria {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cor-musgo);
+}
+
+.categoriaBeneficiada {
+  color: var(--cor-ocre-escuro);
+}
+
+.parceiroNome {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--cor-floresta);
+}
+
+.parceiroDescricao {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--cor-texto-suave);
+}
+
+/* ===== Chamada final ===== */
+.chamada {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}

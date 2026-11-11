@@ -1,0 +1,57 @@
+.rodape {
+  --cor-foco: var(--cor-lima);
+  background: var(--cor-noite);
+  color: var(--cor-texto-rodape);
+  padding: 56px var(--margem-lateral) 40px;
+}
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  height: 52px;
+  width: auto;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 28px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #ffffff;
+}
+
+.link:hover {
+  color: var(--cor-lima);
+}
+
+.base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--cor-borda-rodape);
+  font-size: 15px;
+}

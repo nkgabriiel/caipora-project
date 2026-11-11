@@ -1,0 +1,100 @@
+.secao {
+  padding-inline: var(--margem-lateral);
+}
+
+/* Espacamento vertical */
+.normal {
+  padding-block: 104px;
+}
+
+.compacto {
+  padding-block: 40px;
+}
+
+.chamada {
+  padding-block: 88px;
+}
+
+@media (max-width: 640px) {
+  .normal {
+    padding-block: 72px;
+  }
+
+  .chamada {
+    padding-block: 64px;
+  }
+}
+
+/* Cores de fundo */
+.claro {
+  background: var(--cor-fundo);
+}
+
+.suave {
+  background: var(--cor-fundo-claro);
+}
+
+.escuro {
+  --cor-foco: var(--cor-lima);
+  background: var(--cor-floresta);
+  color: #ffffff;
+}
+
+.lima {
+  background: var(--cor-lima);
+  color: var(--cor-floresta);
+}
+
+/* Cabecalho de secao */
+.cabecalho {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 760px;
+}
+
+.rotulo {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-musgo);
+}
+
+.titulo,
+.tituloPagina {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  color: var(--cor-floresta);
+  text-wrap: balance;
+}
+
+.titulo {
+  font-size: clamp(32px, 4vw, 44px);
+  line-height: 1.1;
+}
+
+.tituloPagina {
+  font-size: clamp(38px, 4.6vw, 58px);
+  line-height: 1.06;
+}
+
+.intro {
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--cor-texto-suave);
+  text-wrap: pretty;
+}
+
+.cabecalhoClaro .rotulo {
+  color: var(--cor-lima);
+}
+
+.cabecalhoClaro .titulo,
+.cabecalhoClaro .tituloPagina {
+  color: #ffffff;
+}
+
+.cabecalhoClaro .intro {
+  color: var(--cor-texto-sobre-escuro);
+}

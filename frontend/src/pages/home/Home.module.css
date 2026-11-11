@@ -1,0 +1,582 @@
+/* Estilos das secoes da pagina inicial. */
+
+/* ===== Colunas que viram uma so no celular ===== */
+.duasColunas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr));
+  gap: 56px;
+  align-items: center;
+}
+
+.pilha {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+/* ===== Topo (hero) ===== */
+.hero {
+  padding: 80px var(--margem-lateral) 96px;
+}
+
+.heroTexto {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.heroRotulo {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-musgo);
+}
+
+.heroTitulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(40px, 5.2vw, 66px);
+  line-height: 1.05;
+  color: var(--cor-floresta);
+  text-wrap: balance;
+}
+
+.heroSubtitulo {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--cor-musgo);
+}
+
+.heroIntro {
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--cor-texto-suave);
+  max-width: 34em;
+  text-wrap: pretty;
+}
+
+.heroFigura {
+  position: relative;
+}
+
+.decorCirculoGrande,
+.decorCirculoPequeno {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.decorCirculoGrande {
+  top: -56px;
+  right: -72px;
+  width: 340px;
+  height: 340px;
+  background: var(--cor-fundo-claro-2);
+}
+
+.decorCirculoPequeno {
+  bottom: -28px;
+  left: -28px;
+  width: 84px;
+  height: 84px;
+  background: var(--cor-lima);
+}
+
+.heroImagem {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--raio-lg);
+}
+
+.legenda {
+  position: relative;
+  margin-top: 12px;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--cor-texto-mudo);
+}
+
+/* ===== Resumo ===== */
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 24px 40px;
+}
+
+.resumoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.resumoTermo {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cor-musgo);
+}
+
+.resumoValor {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* ===== Por que Caipora ===== */
+.sobreTexto {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sobreTitulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 44px);
+  line-height: 1.1;
+}
+
+.citacao {
+  display: flex;
+  gap: 20px;
+}
+
+.aspas {
+  font-family: var(--fonte-titulo);
+  font-size: 96px;
+  line-height: 0.8;
+  font-weight: 700;
+  color: var(--cor-lima);
+}
+
+.citacaoTexto {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: clamp(21px, 2.4vw, 26px);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.sobreParagrafo {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--cor-texto-sobre-escuro);
+  max-width: 36em;
+}
+
+.sobreIlustracao {
+  display: flex;
+  justify-content: center;
+}
+
+.circuloArvore {
+  width: min(320px, 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--cor-musgo);
+  color: var(--cor-lima);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Cards (objetivos e atuacao) ===== */
+.gradeObjetivos,
+.gradeAtuacao {
+  display: grid;
+  gap: 24px;
+}
+
+.gradeObjetivos {
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+}
+
+.gradeAtuacao {
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+  gap: 20px;
+}
+
+.cardObjetivo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  border-radius: var(--raio-md);
+  border: 1px solid var(--cor-borda);
+}
+
+.cardAtuacao {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  border-radius: var(--raio-md);
+  background: var(--cor-fundo);
+}
+
+.cardTopo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cardTitulo {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--cor-floresta);
+}
+
+.cardObjetivo .cardTitulo {
+  font-size: 22px;
+}
+
+.cardTexto {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--cor-texto-suave);
+}
+
+/* ===== Ciclo ===== */
+.cicloCabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.cicloResumo {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--cor-texto-suave);
+  max-width: 420px;
+}
+
+.gradeCiclo {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: 28px;
+}
+
+.etapa {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.etapaImagem,
+.etapaSemImagem {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--raio-sm);
+}
+
+.etapaImagem {
+  object-fit: cover;
+}
+
+.etapaSemImagem {
+  background: var(--cor-fundo-claro);
+  color: var(--cor-musgo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Impacto ===== */
+.impactoTexto {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.impactoImagem {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--raio-lg);
+}
+
+.metricas {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin: 0;
+}
+
+.metrica {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--cor-borda-impacto);
+}
+
+.metricaValor {
+  flex: none;
+  min-width: 150px;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--cor-floresta);
+}
+
+.metricaDescricao {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--cor-texto-suave);
+}
+
+@media (max-width: 480px) {
+  .metrica {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .metricaValor {
+    min-width: 0;
+    font-size: 56px;
+  }
+}
+
+.reconhecimento {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  border-radius: var(--raio-md);
+  background: var(--cor-fundo);
+}
+
+.reconhecimentoTitulo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cor-floresta);
+}
+
+.reconhecimentoTexto {
+  font-size: 17px;
+  color: var(--cor-texto-suave);
+}
+
+/* ===== Quem faz ===== */
+.quemFazTexto {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quemFazCards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardCoordenacao {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  border-radius: var(--raio-md);
+  border: 1px solid var(--cor-borda);
+}
+
+.iniciais {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--cor-floresta);
+  color: var(--cor-lima);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 26px;
+}
+
+.coordenacaoRotulo {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cor-musgo);
+}
+
+.coordenacaoNome {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.gradeParceiros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 16px;
+}
+
+.cardParceiro {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px;
+  border-radius: var(--raio-md);
+  background: var(--cor-fundo-claro);
+}
+
+.parceiroNome {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cor-floresta);
+}
+
+.parceiroTexto {
+  font-size: 16px;
+  color: var(--cor-texto-suave);
+}
+
+/* ===== Chamada (reciclaveis) ===== */
+.chamada {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.chamadaTexto {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 680px;
+}
+
+.chamadaTitulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(34px, 4.2vw, 48px);
+  line-height: 1.08;
+}
+
+.chamadaParagrafo {
+  font-size: 19px;
+  line-height: 1.55;
+}
+
+/* ===== Contato ===== */
+.contato {
+  --cor-foco: var(--cor-lima);
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--cor-floresta);
+  color: #ffffff;
+}
+
+.contatoTexto {
+  flex: 1 1 520px;
+  min-width: 0;
+  /* Alinha o texto com a coluna de 1200px das outras secoes */
+  padding: 96px 32px 96px max(var(--margem-lateral), calc((100vw - var(--largura-max)) / 2));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contatoConteudo {
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.contatoTitulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(34px, 4.2vw, 48px);
+  line-height: 1.08;
+}
+
+.contatoConvite {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--cor-texto-sobre-escuro);
+}
+
+.contatoLista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contatoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 52px;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.contatoLink:hover {
+  color: var(--cor-lima);
+}
+
+.contatoIcone {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--cor-musgo);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* A altura da secao vem do texto; a foto (vertical) so preenche o espaco, sem esticar a secao. */
+.contatoImagem {
+  position: relative;
+  flex: 1 1 420px;
+  min-width: 0;
+  min-height: 520px;
+}
+
+.contatoImagem img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+@media (max-width: 640px) {
+  .contatoTexto {
+    padding-block: 64px;
+  }
+
+  .contatoImagem {
+    min-height: 360px;
+  }
+}
