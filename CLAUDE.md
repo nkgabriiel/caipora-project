@@ -25,6 +25,10 @@ No Windows/PowerShell use `.\mvnw.cmd` no lugar de `./mvnw`.
 
 ## Regras do projeto
 
+- **Leia `context.md` ao comecar** uma sessao: ele tem o estado do projeto, as decisoes e as pendencias.
+  **Toda mudanca de codigo** deve ser registrada na secao "Historico de mudancas" do `context.md`
+  (data, o que mudou e por que), no mesmo commit da mudanca. Atualize tambem as secoes de
+  estado (fases, decisoes, pendencias) quando mudarem.
 - Git: trabalhar direto na `main`, sem criar branches nem PRs. Commits pequenos no padrao
   Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`...) e `git push` logo apos commitar.
   Repositorio: https://github.com/nkgabriiel/caipora-project
