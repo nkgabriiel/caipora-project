@@ -1,0 +1,45 @@
+/*
+ * Variaveis de design do Projeto Caipora.
+ * Valores extraidos do design feito no Claude Design. Altere aqui para mudar o site inteiro.
+ */
+:root {
+  /* Verdes (identidade principal) */
+  --cor-floresta: #1f4a37; /* titulos, botoes primarios, secoes escuras */
+  --cor-musgo: #2e6b4f; /* rotulos, icones, links */
+  --cor-noite: #173a2b; /* fundo do rodape */
+  --cor-salvia: #7fa36a; /* icones dos objetivos */
+  --cor-lima: #b7d75b; /* destaque: botoes e detalhes */
+
+  /* Ocre (destaque secundario) */
+  --cor-ocre: #c9822b;
+  --cor-ocre-escuro: #8a5a17; /* texto ocre com contraste suficiente */
+
+  /* Texto */
+  --cor-texto: #1c2a23;
+  --cor-texto-suave: #3a4740;
+  --cor-texto-mudo: #5a6660;
+  --cor-texto-sobre-escuro: #d7e3da;
+  --cor-texto-rodape: #c9d8cd;
+
+  /* Fundos e bordas */
+  --cor-fundo: #ffffff;
+  --cor-fundo-claro: #eef3ea;
+  --cor-fundo-claro-2: #e6eedf;
+  --cor-fundo-icone: #dde8d3;
+  --cor-borda: #dde8d3;
+  --cor-borda-cabecalho: #e3eadf;
+  --cor-borda-impacto: #cfdcc6;
+  --cor-borda-rodape: #2e5a45;
+
+  /* Tipografia */
+  --fonte-titulo: 'Source Serif 4', Cambria, Georgia, serif;
+  --fonte-texto: 'Source Sans 3', Calibri, 'Segoe UI', system-ui, sans-serif;
+
+  /* Layout */
+  --largura-max: 1200px;
+  --margem-lateral: 24px;
+  --raio-sm: 14px;
+  --raio-md: 16px;
+  --raio-lg: 20px;
+  --raio-pilula: 999px;
+}
