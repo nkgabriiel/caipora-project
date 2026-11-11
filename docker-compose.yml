@@ -11,7 +11,9 @@ services:
       POSTGRES_USER: caipora
       POSTGRES_PASSWORD: caipora
     ports:
-      - "5432:5432"
+      # 5433 no computador (e 5432 dentro do container) para nao conflitar com um
+      # PostgreSQL instalado direto no Windows, que costuma ocupar a 5432.
+      - "5433:5432"
     volumes:
       - caipora-pgdata:/var/lib/postgresql/data
 
