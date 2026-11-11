@@ -1,0 +1,19 @@
+# Banco de dados local para desenvolvimento.
+# Subir:  docker compose up -d
+# Parar:  docker compose down        (os dados ficam no volume)
+# Zerar:  docker compose down -v     (apaga os dados)
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: caipora-postgres
+    environment:
+      POSTGRES_DB: caipora
+      POSTGRES_USER: caipora
+      POSTGRES_PASSWORD: caipora
+    ports:
+      - "5432:5432"
+    volumes:
+      - caipora-pgdata:/var/lib/postgresql/data
+
+volumes:
+  caipora-pgdata:
