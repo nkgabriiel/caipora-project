@@ -1,0 +1,63 @@
+.botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--raio-pilula);
+  font-weight: 700;
+  border: 2px solid transparent;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.md {
+  min-height: 52px;
+  padding: 0 28px;
+  font-size: 17px;
+}
+
+.lg {
+  min-height: 56px;
+  padding: 0 30px;
+  font-size: 18px;
+}
+
+.primario {
+  background: var(--cor-floresta);
+  color: #ffffff;
+}
+
+.primario:hover {
+  background: var(--cor-musgo);
+  color: #ffffff;
+}
+
+.destaque {
+  background: var(--cor-lima);
+  color: var(--cor-floresta);
+}
+
+.destaque:hover {
+  background: #c6e26f;
+  color: var(--cor-floresta);
+}
+
+.contorno {
+  border-color: var(--cor-floresta);
+  color: var(--cor-floresta);
+}
+
+.contorno:hover {
+  background: var(--cor-floresta);
+  color: #ffffff;
+}
+
+.contornoClaro {
+  border-color: var(--cor-lima);
+  color: #ffffff;
+}
+
+.contornoClaro:hover {
+  background: var(--cor-lima);
+  color: var(--cor-floresta);
+}

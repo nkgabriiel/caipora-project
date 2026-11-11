@@ -1,0 +1,24 @@
+.circulo {
+  flex: none;
+  border-radius: 50%;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.musgo {
+  background: var(--cor-musgo);
+}
+
+.salvia {
+  background: var(--cor-salvia);
+}
+
+.ocre {
+  background: var(--cor-ocre);
+}
+
+.floresta {
+  background: var(--cor-floresta);
+}
