@@ -1,0 +1,27 @@
+/* Link de acessibilidade: aparece so quando recebe foco pelo teclado (Tab). */
+.pularConteudo {
+  --cor-foco: var(--cor-lima);
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 10;
+  padding: 12px 20px;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-floresta);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.pularConteudo:focus {
+  top: 16px;
+  color: #ffffff;
+}
+
+/* Os circulos decorativos "saem" das fotos; o excesso e cortado aqui para nao criar rolagem lateral. */
+.principal {
+  overflow-x: clip;
+}
+
+.principal:focus {
+  outline: none;
+}

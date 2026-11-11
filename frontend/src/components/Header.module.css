@@ -1,0 +1,63 @@
+.cabecalho {
+  background: var(--cor-fundo);
+  border-bottom: 1px solid var(--cor-borda-cabecalho);
+  padding-inline: var(--margem-lateral);
+}
+
+.conteudo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 32px;
+  padding-block: 14px;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.logo {
+  height: 44px;
+  width: auto;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 28px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--cor-texto);
+}
+
+.link:hover {
+  color: var(--cor-musgo);
+}
+
+/* Pagina atual (ex.: Equipe) */
+.link[aria-current='page'] {
+  color: var(--cor-musgo);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+@media (max-width: 640px) {
+  .menu {
+    gap: 0 20px;
+    font-size: 15px;
+  }
+}
