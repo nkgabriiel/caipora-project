@@ -39,13 +39,18 @@ O site é um trabalho acadêmico feito em **dupla** (Gabriel e um amigo).
 ## 3. Como rodar
 
 ```bash
-docker compose up -d                      # Postgres local (precisa do Docker Desktop aberto)
+docker compose up -d                      # Postgres local na porta 5433 (precisa do Docker Desktop aberto)
 cd backend && ./mvnw spring-boot:run      # API em http://localhost:8080 (Windows: .\mvnw.cmd)
 cd frontend && npm install && npm run dev # site em http://localhost:5173 (/api -> 8080)
 ```
 
 - Segredos ficam em `backend/.env` (copiar de `backend/.env.example`). **Nunca commitar `.env`.**
-- `cd backend && ./mvnw test` precisa do Docker rodando (Testcontainers).
+- `cd backend && ./mvnw test` precisa do Docker rodando (Testcontainers sobe um Postgres próprio).
+- **Porta 5433, não 5432:** o computador do Gabriel tem um PostgreSQL 18 instalado no Windows
+  (serviço `postgresql-x64-18`) ocupando a 5432. Se o container usar a 5432, a API conecta no Postgres
+  errado e falha com "autenticação do tipo senha falhou para o usuário caipora".
+- Endpoints públicos para testar: `/api/public/parceiros`, `/api/public/impacto`,
+  `/api/public/participantes`, `/actuator/health`.
 
 ## 4. Estado atual: plano em 6 fases
 
@@ -53,16 +58,16 @@ cd frontend && npm install && npm run dev # site em http://localhost:5173 (/api 
 |---|---|---|
 | 1 | Base visual do frontend: tokens de design, fontes, imagens, componentes, layout | ✅ Concluída |
 | 2 | Páginas públicas Início e Equipe com conteúdo fixo | ✅ Concluída e revisada (react-reviewer) |
-| 3 | Backend de conteúdo: migration V1, entidades JPA, `GET /api/public/{participantes,parceiros,impacto}`, `SecurityConfig`, testes | ⏳ Próxima |
-| 4 | Login Google só para a equipe (lista `ADMIN_EMAILS`), `GET /api/me`, CRUD em `/api/admin/**`, CSRF modo SPA, testes de segurança | Pendente |
+| 3 | Backend de conteúdo: migration V1, entidades JPA, `GET /api/public/{participantes,parceiros,impacto}`, `SecurityConfig`, testes | ✅ Concluída e revisada (java-reviewer) |
+| 4 | Login Google só para a equipe (lista `ADMIN_EMAILS`), `GET /api/me`, CRUD em `/api/admin/**`, CSRF modo SPA, validação + `@RestControllerAdvice`, testes de segurança | ⏳ Próxima |
 | 5 | Frontend consumindo a API (`api/client.ts`), página `/admin` com abas e formulários, proxy do Vite para `/oauth2`, `/login` e `/logout` | Pendente |
 | 6 | README (redirect URI do Google, `ADMIN_EMAILS`), revisão com `security-reviewer` e reviewers de linguagem | Pendente |
 
 Detalhes planejados para as próximas fases:
-- **Tabelas:** `participante` (nome, curso, período, ordem), `parceiro` (nome, categoria, descrição,
-  ordem) e `metrica_impacto` (valor, descrição, ordem). Os dados iniciais vêm do design.
-- **Formato da API:** os tipos já existem no frontend em `frontend/src/data/tipos.ts`
-  (`Participante`, `Parceiro`, `MetricaImpacto`). O backend deve devolver nesse formato.
+- **Formato da API:** o backend já devolve exatamente os tipos de `frontend/src/data/tipos.ts`
+  (`Participante`, `Parceiro`, `MetricaImpacto`). A categoria do parceiro sai como rótulo ("Triagem").
+- **Fase 4, escrita:** criar DTOs de entrada com Bean Validation e um `@RestControllerAdvice` para
+  erros de validação e regras de negócio. Na fase 3 só foi ligado o `ProblemDetail` por propriedade.
 - **Login:** sessão por cookie no mesmo domínio via proxy do Vite. O redirect URI do Google passa a
   ser `http://localhost:5173/login/oauth2/code/google` (o README atual ainda cita a porta 8080, então
   precisa corrigir na fase 6).
@@ -107,10 +112,24 @@ caipora-project/
 │       ├── data/exemplo.ts            ← dados provisórios (participantes = placeholders)
 │       └── pages/                     ← HomePage (+ home/*.tsx por seção), EquipePage, NotFoundPage
 ├── backend/
-│   ├── .env.example                   ← DB_URL, DB_USERNAME, DB_PASSWORD, GOOGLE_CLIENT_ID/SECRET
-│   ├── src/main/resources/application.properties  ← lê .env; ddl-auto=validate; OAuth2 Google
-│   ├── src/main/resources/db/migration/            ← (vazio: migrations começam na fase 3)
-│   └── src/test/.../TestcontainersConfiguration.java  ← postgres:17-alpine
+│   ├── .env.example                   ← DB_URL (porta 5433), DB_USERNAME, DB_PASSWORD, GOOGLE_CLIENT_ID/SECRET
+│   ├── src/main/resources/application.properties  ← lê .env; ddl-auto=validate; OAuth2 Google;
+│   │                                                 erros em ProblemDetail
+│   ├── src/main/resources/db/migration/
+│   │   └── V1__conteudo_inicial.sql   ← tabelas participante, parceiro, metrica_impacto + dados do design
+│   ├── src/main/java/br/com/caipora/
+│   │   ├── config/SecurityConfig.java ← GET /api/public/** e /actuator/health abertos; resto exige login;
+│   │   │                                 401 (sem redirecionar) para /api/** sem login
+│   │   └── conteudo/
+│   │       ├── ConteudoPublicoController.java   ← GET /api/public/{participantes,parceiros,impacto}
+│   │       ├── participante/  ← Participante (entidade), Repository, Response (record), Service
+│   │       ├── parceiro/      ← idem + CategoriaParceiro (enum TRIAGEM/BENEFICIADA/PALESTRA com rótulo)
+│   │       └── impacto/       ← MetricaImpacto, Repository, Response, Service
+│   └── src/test/java/br/com/caipora/
+│       ├── TestcontainersConfiguration.java     ← postgres:17-alpine (pública, usada por outros pacotes)
+│       └── conteudo/          ← ParceiroServiceTest (unit), ConteudoPublicoControllerTest (@WebMvcTest +
+│                                 segurança), ConteudoPublicoIntegrationTest (Postgres real),
+│                                 ErroInesperadoIntegrationTest (servidor real: /error e vazamento)
 └── .claude/                ← ECC (seção 7) + launch.json (preview do frontend)
 ```
 
@@ -140,11 +159,16 @@ Seleção do [ECC](https://github.com/affaan-m/ECC) copiada à mão para `.claud
 
 ## 8. Pendências e pontos em aberto
 
-- [ ] **Conteúdo real:** nomes dos participantes (hoje `[Nome do participante]`), ponto de coleta
-      de recicláveis e horário.
+- [ ] **Conteúdo real:** nomes dos participantes (no banco a tabela começa vazia; no frontend ainda
+      aparecem `[Nome do participante]` até a fase 5), ponto de coleta de recicláveis e horário.
 - [ ] **Credencial OAuth do Google** (Google Cloud Console) e lista de e-mails da equipe (fase 4).
-- [ ] **Testes do backend nunca rodaram**: o Docker Desktop estava desligado. Só o build foi verificado.
 - [ ] README: corrigir o redirect URI do Google para a porta 5173 (fase 6).
+- [ ] **Fase 4, obrigatório:** hoje qualquer conta Google "logada" passa no `anyRequest().authenticated()`.
+      Antes de criar `/api/admin/**`, restringir a um papel dado só aos e-mails da equipe
+      (`email_verified` = true) e testar que um usuário logado de fora da equipe recebe 403.
+- [ ] Ao adicionar uma categoria de parceiro: nova migration atualizando o CHECK da tabela `parceiro`
+      e atualizar `CategoriaParceiro` no frontend (`src/data/tipos.ts`).
+- [ ] Quem já criou `backend/.env` com a porta 5432 precisa trocar o `DB_URL` para 5433.
 - [ ] Itens de revisão deixados de propósito: ícones brancos sobre verde-sálvia (2,86:1, decorativos)
       e rolagem suave extra no 1º carregamento, que só acontece em dev por causa do StrictMode.
 - [ ] Doações online (quando a burocracia for resolvida).
@@ -154,6 +178,27 @@ Seleção do [ECC](https://github.com/affaan-m/ECC) copiada à mão para `.claud
 ## 9. Histórico de mudanças
 
 Mais recente primeiro. Cada entrada: data, o que mudou e por quê, commits.
+
+### 2026-11-11: Fase 3: API pública de conteúdo (backend)
+- **Migration V1** (`V1__conteudo_inicial.sql`): tabelas `participante`, `parceiro` e
+  `metrica_impacto` com coluna `ordem`. Dados iniciais do design: 4 parceiros e 2 números de impacto.
+  Os participantes começam vazios, porque não há nomes reais ainda.
+- **Camadas** em `br.com.caipora.conteudo.{participante,parceiro,impacto}`: entidade JPA, repository
+  (`findAllByOrderByOrdemAscIdAsc`), record de resposta no formato do frontend e service read-only.
+- **Endpoints** `GET /api/public/{participantes,parceiros,impacto}` (`ConteudoPublicoController`).
+- **SecurityConfig:** GET público, health aberto, `/error` aberto, resto exige login, 401 (não 302)
+  em `/api/**`. Erros do MVC em ProblemDetail.
+- **Porta do Postgres local 5432 → 5433:** um PostgreSQL 18 instalado no Windows ocupava a 5432.
+- **Bugs achados testando a API rodando, com o banco desligado:**
+  1. o visitante recebia **401** em vez de **500**, porque a rota interna `/error` exigia login;
+  2. a resposta trazia o **stack trace inteiro**. O DevTools liga isso no `spring-boot:run`, e no
+     Spring Boot 4 o prefixo certo para desligar é `spring.web.error.*` (o `server.error.*` é ignorado).
+  Os dois têm regressão coberta por `ErroInesperadoIntegrationTest`, que usa servidor real. A cobertura
+  foi conferida: removendo a regra de `/error`, o teste falha.
+- **Revisão (java-reviewer):** sem CRITICAL/HIGH. Corrigidos: o teste de escrita, que passava pelo
+  motivo errado (CSRF); o teste de ordenação, que não detectava regressão; o health `/actuator/health/**`
+  liberado; e o acoplamento enum x CHECK documentado em `CategoriaParceiro`.
+- **Testes:** 13 (unit, `@WebMvcTest` + segurança, integração com Postgres real, erro com servidor real).
 
 ### 2026-11-11: context.md
 - Criado este arquivo e a regra no `CLAUDE.md` de registrar aqui toda mudança de código.
